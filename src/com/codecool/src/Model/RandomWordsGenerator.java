@@ -15,7 +15,7 @@ String[] wordsWith12Letters = {"constituency", "reproduction", "interference", "
         "accumulation", "satisfaction", "manufacturer", "intelligence", "contribution", "disagreement", "presentation",
         "registration"};
 
-        public String chooseThis(String difficulty) {
+        public String chooseDifficulty(String difficulty) {
 
                 switch (difficulty) {
                         case "easy":
@@ -29,8 +29,8 @@ String[] wordsWith12Letters = {"constituency", "reproduction", "interference", "
                 }
         }
 
-        public String getWord(String[] list_Of_Words) {
-                String randomWord = list_Of_Words[(int) (Math.random() * list_Of_Words.length)];
+        public String getWord(String[] listOfWords) {
+                String randomWord = listOfWords[(int) (Math.random() * listOfWords.length)];
                 System.out.println(randomWord);
                 return randomWord;
         }
