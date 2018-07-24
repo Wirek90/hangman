@@ -1,12 +1,13 @@
 package com.codecool.src;
+import com.codecool.src.Controller.*;
 
 class Main {
 
     public static void main(String[] args){
 
-        Model.RandomWordsGenerator rand = new Model.RandomWordsGenerator();
-
-        rand.chooseDifficulty("hard");
+        App game = new App();
+        game.startGame();
+        game.playGame();
 
     }
 }

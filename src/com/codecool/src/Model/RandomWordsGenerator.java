@@ -1,4 +1,4 @@
-package Model;
+package com.codecool.src.Model;
 
 public class RandomWordsGenerator {
 
