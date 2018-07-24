@@ -6,7 +6,7 @@ class Main {
 
         Model.RandomWordsGenerator rand = new Model.RandomWordsGenerator();
 
-        rand.chooseThis("hard");
+        rand.chooseDifficulty("hard");
 
     }
 }
