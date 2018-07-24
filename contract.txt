@@ -1,0 +1,15 @@
+Contract:
+
+
+naming:
+* method names: camelCase
+* class names: upper CamelCase
+
+
+gitHub:
+* atomic commits
+* pull requests 
+
+
+
+
