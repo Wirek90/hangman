@@ -1,13 +1,17 @@
 package com.codecool.src.Controller;
 import java.util.Collections;
+import java.util.Arrays;
 import com.codecool.src.View.*;
 import com.codecool.src.Model.*;
 
 public class App {
 
-    String word;
-    String userGuess;
+    String[] wordArr;
+    String[] userGuessArr;
+    int errors = 0;
+    int maxErrors = 7; // arbitralnie
     Menu gameMenu = new Menu();
+    GameView view = new GameView();
 
 
     public void startGame(){
@@ -19,19 +23,29 @@ public class App {
 
     public void playGame() {
         RandomWordsGenerator randomWord = new RandomWordsGenerator();
-        word = randomWord.chooseDifficulty("easy");
-        userGuess = String.join("", Collections.nCopies(word.length(), "_"));
-        System.out.println(userGuess);
-        String userInput = gameMenu.getLetterFromUser();
-        String[] userGuessArr = userGuess.split("");
-        String[] wordArr = word.split("");
-        for (int i = 0; i < word.length(); i++) {
-            if (userInput.equals(wordArr[i])) {
-                userGuessArr[i] = userInput;
+        wordArr = randomWord.chooseDifficulty("easy").split("");
+        userGuessArr = String.join("", Collections.nCopies(wordArr.length, "__ ,")).split(","); //create an arr
+        view.printArrayAsString(userGuessArr);
+
+        while (errors < maxErrors ) {// we have to choose max number of errors. Maybe depending on the difficulty?
+            boolean match = false;
+            String userInput = gameMenu.getLetterFromUser();
+            for (int i = 0; i < wordArr.length; i++) {
+                if (userInput.equals(wordArr[i])) {
+                    userGuessArr[i] = userInput + " ";
+                    match = true;
+                }
+
             }
+            view.printArrayAsString(userGuessArr);
+            if (!match) {
+                errors += 1;
+                System.out.print(errors);
+            }
+
+
         }
 
-        System.out.println(userGuess);
 
 
     }

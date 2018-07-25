@@ -33,9 +33,9 @@ public class Menu {
 
 
     public String getLetterFromUser() {
-        System.out.println("Enter a letter");
+        System.out.println("Guess a letter");
         String choice = "";
-        System.out.println();
+
             while (!choice.equals("0")) {
                 choice = input.nextLine();
                 if (choice.matches("^[a-zA-Z]*$") && choice.length() == 1) {
