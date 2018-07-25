@@ -10,5 +10,14 @@ public class GameView {
          System.out.println(prettyArr);
 
         }
+
+     public void informOfFailure() {
+        System.out.println("YOU LOST! SHAME ON YOU...");
+     }
+
+    public void informOfSuccess() {
+        System.out.println("YOU WON! YAY!");
+    }
+
     }
 

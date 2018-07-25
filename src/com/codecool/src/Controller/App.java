@@ -1,63 +1,87 @@
 package com.codecool.src.Controller;
 import java.util.Collections;
-import java.util.Arrays;
 import com.codecool.src.View.*;
 import com.codecool.src.Model.*;
 
 public class App {
 
-    String[] wordArr;
-    String[] userGuessArr;
-    int errors = 0;
-    int maxErrors = 7; // arbitralnie
-    Menu gameMenu = new Menu();
-    GameView view = new GameView();
+    private String[] wordArr;
+    private int errors = 0;
+    private int maxErrors = 7; // arbitralnie
+    private Menu menuObject = new Menu();
+    private GameView viewObject = new GameView();
 
-    public void welcomeMessage(){
-        Menu MenuObject = new Menu();
-        MenuObject.welcome();
-    }
 
-    public void startGame(){
-        String choice = gameMenu.askToPlay();
+
+    public void startGame() {
+        menuObject.welcome();
+        String choice = menuObject.askToPlay();
         if (choice.equals("N")) {
             System.exit(0);
         }
     }
 
+
     public void playGame() {
         RandomWordsGenerator randomWord = new RandomWordsGenerator();
-        Menu menuObject = new Menu();
         String lvl = menuObject.chooseDifficulty();
-
         wordArr = randomWord.chooseDifficulty(lvl).split("");
+        String[] userGuessArr;
+        userGuessArr = String.join("", Collections.nCopies(wordArr.length, "__ ,")).split(",");
+        viewObject.printArrayAsString(userGuessArr);
 
-        userGuessArr = String.join("", Collections.nCopies(wordArr.length, "__ ,")).split(","); //create an arr
-        view.printArrayAsString(userGuessArr);
+        if (getUserToPlayAndCheckIfTheyWon(wordArr, userGuessArr)) {
+            viewObject.informOfSuccess();
+        } else {
+            viewObject.informOfFailure();
+        }
+    }
 
-        while (errors < maxErrors ) {// we have to choose max number of errors. Maybe depending on the difficulty?
+
+    public boolean getUserToPlayAndCheckIfTheyWon(String[] wordArr, String[] userGuessArr){
+        while (errors < maxErrors) {
+
             boolean match = false;
-            String userInput = gameMenu.getLetterFromUser();
+            String userInput = menuObject.getLetterFromUser();
+
             for (int i = 0; i < wordArr.length; i++) {
                 if (userInput.equals(wordArr[i])) {
                     userGuessArr[i] = userInput + " ";
                     match = true;
                 }
-
             }
-            view.printArrayAsString(userGuessArr);
+
+            viewObject.printArrayAsString(userGuessArr);
+
             if (!match) {
                 errors += 1;
-                System.out.print(errors);
+                //draw hangman(errors);
             }
 
-
+            if (isEqual(wordArr, userGuessArr)) {
+                return true;
+            }
         }
-
-
-
+        return false;
     }
 
 
 
+
+    public boolean isEqual(String[] wordArr, String[] userGuessArr) {
+            String word = arrayToString(wordArr);
+            String userGuess = arrayToString(userGuessArr).replaceAll("\\s","");
+
+            return word.equals(userGuess);
+
+        }
+
+    public String arrayToString(String[] arr) {
+        StringBuilder str = new StringBuilder();
+
+        for (String element : arr) {
+            str.append(element);
+        }
+        return str.toString();
+    }
 }
