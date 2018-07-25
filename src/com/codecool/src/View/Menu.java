@@ -40,25 +40,32 @@ public class Menu {
     // ask the user about the level of difficulty
 
 
+        System.out.println("Choose the difficulty");
+        System.out.println("1. easy, 2. medium, 3. hard");
+        String lvl = "";
+
+        while (!lvl.equals("0")) {
+            lvl = input.nextLine();
         System.out.println("Choose the difficulty\n");
         System.out.println("1. easy, 2. medium, 3. hard\n");
         String lvl = input.nextLine();
         if (lvl.equals("1")){
             lvl = "easy";
-            System.out.printf("You choose %s. You're weak!\n", lvl);
+            System.out.printf("You choose %s. You're weak!", lvl);
             return lvl;
         } else if (lvl.equals("2")){
             lvl = "medium";
-            System.out.printf("You choose %s. Not bad\n", lvl);
+            System.out.printf("You choose %s. Not bad", lvl);
             return lvl;
         } else if (lvl.equals("3")){
             lvl = "hard";
-            System.out.printf("You choose %s. You like Dark Souls?\n", lvl);
+            System.out.printf("You choose %s. You like Dark Souls?", lvl);
             return lvl;
         } else {
-            System.out.println("bad input\n");
-            //System.exit(0);
+            System.out.println("bad input");
+
         }
+            }
         return lvl;
      }
 
