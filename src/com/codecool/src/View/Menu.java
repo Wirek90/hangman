@@ -1,4 +1,5 @@
 package com.codecool.src.View;
+import java.io.Console;
 import java.util.Scanner;
 
 
@@ -7,7 +8,7 @@ public class Menu {
     Scanner input = new Scanner(System.in);
 
     public void welcome() {
-        System.out.println("                                   WELCOME TO");
+        System.out.println(ConsoleColors.YELLOW_BOLD + "                                   WELCOME TO");
         System.out.println(
                 " __    __       ___      .__   __.   _______ .___  ___.      ___      .__   __. \n" +
                         "|  |  |  |     /   \\     |  \\ |  |  /  _____||   \\/   |     /   \\     |  \\ |  | \n" +
@@ -15,7 +16,8 @@ public class Menu {
                         "|   __   |   /  /_\\  \\   |  . `  | |  | |_ | |  |\\/|  |   /  /_\\  \\   |  . `  | \n" +
                         "|  |  |  |  /  _____  \\  |  |\\   | |  |__| | |  |  |  |  /  _____  \\  |  |\\   | \n" +
                         "|__|  |__| /__/     \\__\\ |__| \\__|  \\______| |__|  |__| /__/     \\__\\ |__| \\__| \n" +
-                        "                                                                                "
+                        "                                                                                " +
+                        ConsoleColors.RESET
                 );
     }
 
