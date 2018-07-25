@@ -2,7 +2,7 @@ package com.codecool.src.Model;
 
 public class HangMan {
 
-    public static void hangmanImage(word) {
+    public static void hangmanImage(String word, int count) {
         if (count == 1) {
             System.out.println("Wrong guess, try again");
             System.out.println();
