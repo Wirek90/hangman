@@ -7,8 +7,7 @@ class Main {
     public static void main(String[] args){
 
         App game = new App();
-        Menu MenuObject = new Menu();
-        MenuObject.welcome();
+        game.welcomeMessage();
         game.startGame();
         game.playGame();
 

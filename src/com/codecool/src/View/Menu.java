@@ -7,6 +7,7 @@ public class Menu {
     Scanner input = new Scanner(System.in);
 
     public void welcome() {
+        System.out.println("                                   WELCOME TO");
         System.out.println(
                 " __    __       ___      .__   __.   _______ .___  ___.      ___      .__   __. \n" +
                         "|  |  |  |     /   \\     |  \\ |  |  /  _____||   \\/   |     /   \\     |  \\ |  | \n" +
@@ -14,8 +15,8 @@ public class Menu {
                         "|   __   |   /  /_\\  \\   |  . `  | |  | |_ | |  |\\/|  |   /  /_\\  \\   |  . `  | \n" +
                         "|  |  |  |  /  _____  \\  |  |\\   | |  |__| | |  |  |  |  /  _____  \\  |  |\\   | \n" +
                         "|__|  |__| /__/     \\__\\ |__| \\__|  \\______| |__|  |__| /__/     \\__\\ |__| \\__| \n" +
-                        "                                                                                " +
-                "WELCOME TO HANGMAN!");
+                        "                                                                                "
+                );
     }
 
     public String askToPlay() {

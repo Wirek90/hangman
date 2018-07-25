@@ -9,6 +9,10 @@ public class App {
     String userGuess;
     Menu gameMenu = new Menu();
 
+    public void welcomeMessage(){
+        Menu MenuObject = new Menu();
+        MenuObject.welcome();
+    }
 
     public void startGame(){
         String choice = gameMenu.askToPlay();
