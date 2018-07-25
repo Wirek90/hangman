@@ -26,7 +26,7 @@ public class Menu {
 
             while (!choice.equals("0")) {
                 choice = input.nextLine().toUpperCase();
-                if (choice.equals("Y") || choice.equals("N")) {
+                if (choice.equals("Y") || choice.equals("N") || choice.equals("0")){
                     return choice;
                 } else {
                     System.out.println("Please enter only Y to play or N to quit");
@@ -35,6 +35,8 @@ public class Menu {
 
         return choice;
     }
+
+
 
     public String chooseDifficulty() {
     // ask the user about the level of difficulty
@@ -45,24 +47,28 @@ public class Menu {
         String lvl = "";
 
         while (!lvl.equals("0")) {
-            lvl = input.nextLine();
+        lvl = input.nextLine();
         System.out.println("Choose the difficulty\n");
         System.out.println("1. easy, 2. medium, 3. hard\n");
-        String lvl = input.nextLine();
-        if (lvl.equals("1")){
-            lvl = "easy";
-            System.out.printf("You choose %s. You're weak!", lvl);
-            return lvl;
-        } else if (lvl.equals("2")){
-            lvl = "medium";
-            System.out.printf("You choose %s. Not bad", lvl);
-            return lvl;
-        } else if (lvl.equals("3")){
-            lvl = "hard";
-            System.out.printf("You choose %s. You like Dark Souls?", lvl);
-            return lvl;
-        } else {
-            System.out.println("bad input");
+
+        switch (lvl) {
+            case ("0"):
+                  System.out.printf("Goodbye\n");
+                return lvl;
+            case ("1"):
+                lvl = "easy";
+                System.out.printf("You choose %s. You're weak!", lvl);
+                return lvl;
+            case ("2"):
+                lvl = "medium";
+                System.out.printf("You choose %s. Not bad", lvl);
+                return lvl;
+            case ("3"):
+                lvl = "hard";
+                System.out.printf("You choose %s. You like Dark Souls?", lvl);
+                return lvl;
+            default:
+                System.out.println("bad input");
 
         }
             }
@@ -86,5 +92,8 @@ public class Menu {
         return choice;
 
     }
+
+
+
 }
 
