@@ -20,7 +20,17 @@ public class App {
     public void playGame() {
         RandomWordsGenerator randomWord = new RandomWordsGenerator();
         word = randomWord.chooseDifficulty("easy");
-        userGuess = String.join("", Collections.nCopies(word.length(), "_ "));
+        userGuess = String.join("", Collections.nCopies(word.length(), "_"));
+        System.out.println(userGuess);
+        String userInput = gameMenu.getLetterFromUser();
+        String[] userGuessArr = userGuess.split("");
+        String[] wordArr = word.split("");
+        for (int i = 0; i < word.length(); i++) {
+            if (userInput.equals(wordArr[i])) {
+                userGuessArr[i] = userInput;
+            }
+        }
+
         System.out.println(userGuess);
 
 
