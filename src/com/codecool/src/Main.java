@@ -3,11 +3,9 @@ import com.codecool.src.Controller.*;
 
 class Main {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
 
         App game = new App();
-        game.startGame();
-        game.playGame();
-
+        game.playHangmanPRO();
     }
 }

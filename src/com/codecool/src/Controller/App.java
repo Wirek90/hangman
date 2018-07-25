@@ -5,11 +5,23 @@ import com.codecool.src.Model.*;
 
 public class App {
 
-    private String[] wordArr;
-    private int errors = 0;
-    private int maxErrors = 7; // arbitralnie
+
     private Menu menuObject = new Menu();
     private GameView viewObject = new GameView();
+    private int errors = 0;
+    private int maxErrors = 7; // arbitralnie
+    private String[] userGuessArr;
+    private String[] wordArr;
+    boolean playerWon;
+
+
+
+    public void playHangmanPRO() {
+        startGame();
+        prepareGame();
+        playGame();
+        finishGame();
+    }
 
 
 
@@ -22,59 +34,74 @@ public class App {
     }
 
 
-    public void playGame() {
+
+    public void prepareGame() {
         RandomWordsGenerator randomWord = new RandomWordsGenerator();
         String lvl = menuObject.chooseDifficulty();
         wordArr = randomWord.chooseDifficulty(lvl).split("");
-        String[] userGuessArr;
         userGuessArr = String.join("", Collections.nCopies(wordArr.length, "__ ,")).split(",");
-        viewObject.printArrayAsString(userGuessArr);
-
-        if (getUserToPlayAndCheckIfTheyWon(wordArr, userGuessArr)) {
-            viewObject.informOfSuccess();
-        } else {
-            viewObject.informOfFailure();
-        }
     }
 
 
-    public boolean getUserToPlayAndCheckIfTheyWon(String[] wordArr, String[] userGuessArr){
-        while (errors < maxErrors) {
 
+    public void playGame() {
+        String userInput = "";
+        while (userInput != "0") {
+
+            viewObject.printArrayAsString(userGuessArr);
             boolean match = false;
-            String userInput = menuObject.getLetterFromUser();
+            userInput = menuObject.getLetterFromUser();
 
             for (int i = 0; i < wordArr.length; i++) {
                 if (userInput.equals(wordArr[i])) {
-                    userGuessArr[i] = userInput + " ";
+                      userGuessArr[i] = userInput + " ";
                     match = true;
                 }
             }
 
             viewObject.printArrayAsString(userGuessArr);
 
-            if (!match) {
+            //draw hangman(errors);
+            if (match) {
+                viewObject.correctMatch();
+
+            } else if (!match) {
                 errors += 1;
-                //draw hangman(errors);
+                viewObject.incorrectMatch();
             }
 
-            if (isEqual(wordArr, userGuessArr)) {
-                return true;
+            if (guessIsCorrect()) {
+                playerWon = true;
+                break;
+            }
+
+            if (errors >= maxErrors) {
+                playerWon = false;
+                break;
             }
         }
-        return false;
     }
 
 
 
-
-    public boolean isEqual(String[] wordArr, String[] userGuessArr) {
-            String word = arrayToString(wordArr);
-            String userGuess = arrayToString(userGuessArr).replaceAll("\\s","");
-
-            return word.equals(userGuess);
-
+public void finishGame() {
+        if (playerWon) {
+            viewObject.informOfSuccess();
+        } else if (!playerWon) {
+            viewObject.informOfFailure();
         }
+     }
+
+
+
+    public boolean guessIsCorrect() {
+            String wordString = arrayToString(wordArr);
+            String userGuessString = arrayToString(userGuessArr).replaceAll("\\s","");
+
+            return wordString.equals(userGuessString);
+        }
+
+
 
     public String arrayToString(String[] arr) {
         StringBuilder str = new StringBuilder();

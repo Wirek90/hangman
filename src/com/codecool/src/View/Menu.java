@@ -25,7 +25,7 @@ public class Menu {
         System.out.println();
 
             while (!choice.equals("0")) {
-                choice = input.nextLine();
+                choice = input.nextLine().toUpperCase();
                 if (choice.equals("Y") || choice.equals("N")) {
                     return choice;
                 } else {
@@ -40,23 +40,23 @@ public class Menu {
     // ask the user about the level of difficulty
 
 
-        System.out.println("Choose the difficulty");
-        System.out.println("1. easy, 2. medium, 3. hard");
+        System.out.println("Choose the difficulty\n");
+        System.out.println("1. easy, 2. medium, 3. hard\n");
         String lvl = input.nextLine();
         if (lvl.equals("1")){
             lvl = "easy";
-            System.out.printf("You choose %s. You're weak!", lvl);
+            System.out.printf("You choose %s. You're weak!\n", lvl);
             return lvl;
         } else if (lvl.equals("2")){
             lvl = "medium";
-            System.out.printf("You choose %s. Not bad", lvl);
+            System.out.printf("You choose %s. Not bad\n", lvl);
             return lvl;
         } else if (lvl.equals("3")){
             lvl = "hard";
-            System.out.printf("You choose %s. You like Dark Souls?", lvl);
+            System.out.printf("You choose %s. You like Dark Souls?\n", lvl);
             return lvl;
         } else {
-            System.out.println("bad input");
+            System.out.println("bad input\n");
             //System.exit(0);
         }
         return lvl;
@@ -64,16 +64,15 @@ public class Menu {
 
 
     public String getLetterFromUser() {
-        System.out.println("Guess a letter");
+        System.out.println("Guess a letter\n");
         String choice = "";
 
             while (!choice.equals("0")) {
-                choice = input.nextLine();
+                choice = input.nextLine().toLowerCase();
                 if (choice.matches("^[a-zA-Z]*$") && choice.length() == 1) {
-                    System.out.println("IT'S A MATCH!");
                     return choice;
                 } else {
-                    System.out.println("Please enter only one letter. No Polish letters!");
+                    System.out.println("Please enter only one letter. No numbers or Polish letters allowed!\n");
                 }
             }
 
