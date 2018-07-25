@@ -36,9 +36,31 @@ public class Menu {
         return choice;
     }
 
-    //public String chooseDifficulty() {
+    public String chooseDifficulty() {
     // ask the user about the level of difficulty
-    // }
+
+
+        System.out.println("Choose the difficulty");
+        System.out.println("1. easy, 2. medium, 3. hard");
+        String lvl = input.nextLine();
+        if (lvl.equals("1")){
+            lvl = "easy";
+            System.out.printf("You choose %s. You're weak!", lvl);
+            return lvl;
+        } else if (lvl.equals("2")){
+            lvl = "medium";
+            System.out.printf("You choose %s. Not bad", lvl);
+            return lvl;
+        } else if (lvl.equals("3")){
+            lvl = "hard";
+            System.out.printf("You choose %s. You like Dark Souls?", lvl);
+            return lvl;
+        } else {
+            System.out.println("bad input");
+            //System.exit(0);
+        }
+        return lvl;
+     }
 
 
     public String getLetterFromUser() {

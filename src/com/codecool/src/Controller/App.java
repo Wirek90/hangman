@@ -27,7 +27,11 @@ public class App {
 
     public void playGame() {
         RandomWordsGenerator randomWord = new RandomWordsGenerator();
-        wordArr = randomWord.chooseDifficulty("easy").split("");
+        Menu menuObject = new Menu();
+        String lvl = menuObject.chooseDifficulty();
+
+        wordArr = randomWord.chooseDifficulty(lvl).split("");
+
         userGuessArr = String.join("", Collections.nCopies(wordArr.length, "__ ,")).split(","); //create an arr
         view.printArrayAsString(userGuessArr);
 
