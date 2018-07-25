@@ -43,6 +43,7 @@ public class Menu {
         System.out.println("Choose the difficulty");
         System.out.println("1. easy, 2. medium, 3. hard");
         String lvl = input.nextLine();
+        while (!lvl.equals("0")) {
         if (lvl.equals("1")){
             lvl = "easy";
             System.out.printf("You choose %s. You're weak!", lvl);
@@ -57,8 +58,9 @@ public class Menu {
             return lvl;
         } else {
             System.out.println("bad input");
-            //System.exit(0);
+
         }
+            }
         return lvl;
      }
 
