@@ -9,35 +9,64 @@ import com.codecool.src.Model.*;
 
 public class App {
 
-    String word;
-    String userGuess;
-    Menu gameMenu = new Menu();
+    private String[] wordArr;
+    private int errors = 0;
+    private int maxErrors = 7; // arbitralnie
+    private Menu menuObject = new Menu();
+    private GameView viewObject = new GameView();
 
 
-    public void startGame(){
-        String choice = gameMenu.askToPlay();
+
+    public void startGame() {
+        menuObject.welcome();
+        String choice = menuObject.askToPlay();
         if (choice.equals("N")) {
             System.exit(0);
         }
     }
 
+
     public void playGame() {
         RandomWordsGenerator randomWord = new RandomWordsGenerator();
-        word = randomWord.chooseDifficulty("easy");
-        userGuess = String.join("", Collections.nCopies(word.length(), "_"));
-        System.out.println(userGuess);
-        String userInput = gameMenu.getLetterFromUser();
-        String[] userGuessArr = userGuess.split("");
-        String[] wordArr = word.split("");
-        for (int i = 0; i < word.length(); i++) {
-            if (userInput.equals(wordArr[i])) {
-                userGuessArr[i] = userInput;
+        String lvl = menuObject.chooseDifficulty();
+        wordArr = randomWord.chooseDifficulty(lvl).split("");
+        String[] userGuessArr;
+        userGuessArr = String.join("", Collections.nCopies(wordArr.length, "__ ,")).split(",");
+        viewObject.printArrayAsString(userGuessArr);
+
+        if (getUserToPlayAndCheckIfTheyWon(wordArr, userGuessArr)) {
+            viewObject.informOfSuccess();
+        } else {
+            viewObject.informOfFailure();
+        }
+    }
+
+
+    public boolean getUserToPlayAndCheckIfTheyWon(String[] wordArr, String[] userGuessArr){
+        while (errors < maxErrors) {
+
+            boolean match = false;
+            String userInput = menuObject.getLetterFromUser();
+
+            for (int i = 0; i < wordArr.length; i++) {
+                if (userInput.equals(wordArr[i])) {
+                    userGuessArr[i] = userInput + " ";
+                    match = true;
+                }
+            }
+
+            viewObject.printArrayAsString(userGuessArr);
+
+            if (!match) {
+                errors += 1;
+                //draw hangman(errors);
+            }
+
+            if (isEqual(wordArr, userGuessArr)) {
+                return true;
             }
         }
-
-        System.out.println(userGuess);
-
-
+        return false;
     }
 
         public static void writeToFile(String player, int score) {
@@ -95,4 +124,21 @@ public class App {
     }
 
 
+
+    public boolean isEqual(String[] wordArr, String[] userGuessArr) {
+            String word = arrayToString(wordArr);
+            String userGuess = arrayToString(userGuessArr).replaceAll("\\s","");
+
+            return word.equals(userGuess);
+
+        }
+
+    public String arrayToString(String[] arr) {
+        StringBuilder str = new StringBuilder();
+
+        for (String element : arr) {
+            str.append(element);
+        }
+        return str.toString();
+    }
 }

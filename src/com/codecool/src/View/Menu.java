@@ -7,7 +7,16 @@ public class Menu {
     Scanner input = new Scanner(System.in);
 
     public void welcome() {
-        System.out.println("WELCOME TO HANGMAN!");
+        System.out.println("                                   WELCOME TO");
+        System.out.println(
+                " __    __       ___      .__   __.   _______ .___  ___.      ___      .__   __. \n" +
+                        "|  |  |  |     /   \\     |  \\ |  |  /  _____||   \\/   |     /   \\     |  \\ |  | \n" +
+                        "|  |__|  |    /  ^  \\    |   \\|  | |  |  __  |  \\  /  |    /  ^  \\    |   \\|  | \n" +
+                        "|   __   |   /  /_\\  \\   |  . `  | |  | |_ | |  |\\/|  |   /  /_\\  \\   |  . `  | \n" +
+                        "|  |  |  |  /  _____  \\  |  |\\   | |  |__| | |  |  |  |  /  _____  \\  |  |\\   | \n" +
+                        "|__|  |__| /__/     \\__\\ |__| \\__|  \\______| |__|  |__| /__/     \\__\\ |__| \\__| \n" +
+                        "                                                                                "
+                );
     }
 
     public String askToPlay() {
@@ -27,15 +36,41 @@ public class Menu {
         return choice;
     }
 
-    //public String chooseDifficulty() {
+    public String chooseDifficulty() {
     // ask the user about the level of difficulty
-    // }
+
+
+        System.out.println("Choose the difficulty");
+        System.out.println("1. easy, 2. medium, 3. hard");
+        String lvl = "";
+
+        while (!lvl.equals("0")) {
+            lvl = input.nextLine();
+        if (lvl.equals("1")){
+            lvl = "easy";
+            System.out.printf("You choose %s. You're weak!", lvl);
+            return lvl;
+        } else if (lvl.equals("2")){
+            lvl = "medium";
+            System.out.printf("You choose %s. Not bad", lvl);
+            return lvl;
+        } else if (lvl.equals("3")){
+            lvl = "hard";
+            System.out.printf("You choose %s. You like Dark Souls?", lvl);
+            return lvl;
+        } else {
+            System.out.println("bad input");
+
+        }
+            }
+        return lvl;
+     }
 
 
     public String getLetterFromUser() {
-        System.out.println("Enter a letter");
+        System.out.println("Guess a letter");
         String choice = "";
-        System.out.println();
+
             while (!choice.equals("0")) {
                 choice = input.nextLine();
                 if (choice.matches("^[a-zA-Z]*$") && choice.length() == 1) {
