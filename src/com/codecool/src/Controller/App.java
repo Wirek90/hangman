@@ -13,6 +13,10 @@ public class App {
     Menu gameMenu = new Menu();
     GameView view = new GameView();
 
+    public void welcomeMessage(){
+        Menu MenuObject = new Menu();
+        MenuObject.welcome();
+    }
 
     public void startGame(){
         String choice = gameMenu.askToPlay();
