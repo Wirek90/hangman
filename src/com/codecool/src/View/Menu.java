@@ -77,6 +77,25 @@ public class Menu {
         return lvl;
      }
 
+     public String playAgain() {
+
+        System.out.println("If you want to continue press 1 or press 0 and DIE!");
+        String choicePlayAgain = "";
+        System.out.println();
+
+        while (!choicePlayAgain.equals("0")) {
+            choicePlayAgain = input.nextLine();
+            if (choicePlayAgain.equals("1")){
+                return choicePlayAgain;
+            } else if (choicePlayAgain.equals("0")) {
+                System.out.println("Please enter only Y to play or N to quit");
+            } else {
+                System.out.printf("Bad input you moron. Go commit sudoku!");
+            }
+        }
+
+        return choicePlayAgain;
+    }
 
     public String getLetterFromUser() {
         System.out.println("Guess a letter\n");

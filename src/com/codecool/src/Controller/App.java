@@ -27,9 +27,17 @@ public class App {
             prepareGame();
             playGame();
             finishGame();
+            restartGame();
     }
 
+    public void playAgain() {
 
+        errors = 0;
+        prepareGame();
+        playGame();
+        finishGame();
+        restartGame();
+    }
 
     public void startGame() {
         menuObject.welcome();
@@ -101,13 +109,28 @@ public class App {
     }
 
 
-public void finishGame() {
-        if (playerWon) {
-            viewObject.informOfSuccess();
-        } else if (!playerWon) {
-            viewObject.informOfFailure();
-        }
-     }
+    public void finishGame() {
+            if (playerWon) {
+                viewObject.informOfSuccess();
+            } else if (!playerWon) {
+                viewObject.informOfFailure();
+            }
+         }
+
+    public void restartGame() {
+
+        userInput = menuObject.playAgain();
+
+
+            if (userInput.equals("1")){
+                System.out.println(errors);
+                playAgain();
+            } else if (userInput.equals("0")) {
+                System.exit(0);
+            }
+
+    }
+
 
 
 
