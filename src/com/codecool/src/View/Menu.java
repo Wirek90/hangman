@@ -85,7 +85,7 @@ public class Menu {
             if (choicePlayAgain.equals("1")){
                 return choicePlayAgain;
             } else if (choicePlayAgain.equals("0")) {
-                System.out.println("Please enter only Y to play or N to quit");
+                System.out.println("Please enter only 1 to play or 0 to quit");
             } else {
                 System.out.printf("Bad input you moron. Go commit sudoku!");
             }
@@ -97,7 +97,7 @@ public class Menu {
 
 
     public String getLetterFromUser() {
-        System.out.println("Guess a letter\n");
+        System.out.println("Guess a letter (or press 1 to get a hint) \n");
         String choice = "";
 
             while (!choice.equals("0")) {
