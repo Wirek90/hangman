@@ -15,15 +15,27 @@ String[] wordsWith12Letters = {"constituency", "reproduction", "interference", "
         "accumulation", "satisfaction", "manufacturer", "intelligence", "contribution", "disagreement", "presentation",
         "registration"};
 
-        public String chooseDifficulty(String difficulty) {
+String[] meme = {"harambe", "grumpy-cat", "doge", "chuck-norris", "angry-german-kid", "achmed-the-dead-terrorist",
+        "nonono-cat", "epic-fail", "good-guy-greg", "u-mad-bro", "crying-jordan", "philosoraptor", "this-is-sparta",
+        "flex-tape-guy"};
 
-                switch (difficulty) {
+String[] cars = {"ferrari", "seat", "bmw", "toyota", "mazda", "mercedes", "skoda", "fiat", "range-rover", "bentley",
+        "jeep", "lamborgini", "tata", "nissan", "audi", "volksvagen", "kia", "saab", "citroen", "peugeot", "alfa-romeo",
+        "ssangyong"};
+
+        public String chooseRandomWord(String type) {
+
+                switch (type) {
                         case "easy":
                                 return getWord(wordsWith6Letters);
                         case "medium":
                                 return getWord(wordsWith10Letters);
                         case "hard":
                                 return getWord(wordsWith12Letters);
+                        case "meme":
+                                return getWord(meme);
+                        case "cars":
+                                return getWord(cars);
                         default:
                                 return "";
                 }

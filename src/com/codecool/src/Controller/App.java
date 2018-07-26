@@ -11,58 +11,84 @@ public class App {
     private Menu menuObject = new Menu();
     private GameView viewObject = new GameView();
     private int errors = 0;
-    private int maxErrors = 7; // arbitralnie
+    private int hintsUsed = 0;
+    private int maxErrors = 7;
     private String[] userGuessArr;
     private String[] wordArr;
     private String userInput = "";
-    private ArrayList <String> usedLetters;
-    boolean playerWon;
-    int gameScore;
+    private ArrayList<String> usedLetters;
+    private boolean playerWon;
     private HangMan hangManObject = new HangMan();
+    private Highscore highScoreObject = new Highscore();
 
 
     public void playHangmanPRO() {
-
-        while (!userInput.equals("0")) {
-            startGame();
             prepareGame();
             playGame();
             finishGame();
-        }
-        System.exit(0);
+            restartGame();
     }
 
 
 
-    public void startGame() {
+    public void welcome() {
         menuObject.welcome();
         userInput = menuObject.askToPlay();
-        userInput = (userInput.equals("N"))? "0" : "";
+        if (userInput.equals("N")) {
+            exitGame();
+        }
+        if (userInput.equals("H")) {
+            viewObject.printHighScore(highScoreObject.getHighscore());
+        }
     }
 
 
 
-    public void prepareGame() {
+
+    private void prepareGame() {
         RandomWordsGenerator randomWord = new RandomWordsGenerator();
         userInput = menuObject.chooseDifficulty();
-        wordArr = randomWord.chooseDifficulty(userInput).split("");
-        usedLetters = new ArrayList<String>();
-        userGuessArr = String.join(
-                "",
-                Collections.nCopies(wordArr.length, "__ ,")
-                ).split(",");
+        wordArr = randomWord.chooseRandomWord(userInput).split("");
+        usedLetters = new ArrayList<>();
+        prepareGuessArr();
+
+        if (userInput.equals("0")) {
+            exitGame();
+        }
+
     }
 
 
 
-    public void playGame() {
+    private void prepareGuessArr() {
+        userGuessArr = String.join(
+                "",
+                Collections.nCopies(wordArr.length, "__ ,"))
+                .split(",");
+
+        for (int i = 0; i < wordArr.length; i++) {
+            if (wordArr[i].equals("-")) {
+                userGuessArr[i] = "-";
+            }
+        }
+    }
+
+    private void playGame() {
         String userInput = "";
         while (!userInput.equals("0")) {
 
-            viewObject.printArrayAsString(userGuessArr);
+
             boolean match = false;
             userInput = menuObject.getLetterFromUser();
-            if (usedLetters.contains(userInput)) {
+
+            if (userInput.equals("0")) {
+                exitGame();
+            }
+
+            if (userInput.equals("1")) {
+                giveAHint();
+            }
+            else if (usedLetters.contains(userInput)) {
                 viewObject.informLetterUsed();
 
             } else {
@@ -74,15 +100,7 @@ public class App {
                     }
                 }
 
-
-            if (!match) {
-                errors += 1;
-                hangManObject.hangmanImage(wordArr ,errors);
-                //draw hangman(errors);
-            }
-
                 viewObject.printArrayAsString(userGuessArr);
-
 
 
                 if (match) {
@@ -109,42 +127,75 @@ public class App {
             }
 
         }
+        if (userInput.equals("0")) {
+            exitGame();
+        }
+
     }
 
 
 
-//        for(int i = 0; i < listOfTopPlayer.length; i++ ){
-//            if(i%2 != 0){
-//                System.out.println(listOfTopPlayer[i]);
-//                if(listOfTopPlayer[i] < scoreGame){
-//                    //zapisz najwyższy
-//                }
-//                else {
-//                    //nic
-//                }
-//            }
-//        }
+    private void finishGame() {
+            if (playerWon) {
+                viewObject.informOfSuccess();
+                if (highScoreObject.checkIfHighScore(errors)) {
+                    String userName = menuObject.getPlayerNameFromUser();
+                    highScoreObject.saveHighscore(errors, userName);
+                    String[] highScore = highScoreObject.readFile();
+                    viewObject.printHighScore(highScore);
 
-public void finishGame() {
-        if (playerWon) {
-            viewObject.informOfSuccess();
-        } else if (!playerWon) {
-            viewObject.informOfFailure();
-        }
-     }
+
+                }
+            } else if (!playerWon) {
+                viewObject.informOfFailure();
+            }
+         }
 
 
 
-    public boolean guessIsCorrect() {
-            String wordString = arrayToString(wordArr);
-            String userGuessString = arrayToString(userGuessArr).replaceAll("\\s","");
+    private void restartGame() {
 
-            return wordString.equals(userGuessString);
-        }
+        userInput = menuObject.playAgain();
 
 
+            if (userInput.equals("1")){
+                resetStats();
+                playHangmanPRO();
 
-    public String arrayToString(String[] arr) {
+            } else if (userInput.equals("0")) {
+                exitGame();
+            }
+
+    }
+
+
+
+    private void resetStats() {
+        errors = 0;
+        hintsUsed = 0;
+        maxErrors = 7;
+        userInput = "";
+        usedLetters.clear();
+        playerWon = false;
+    }
+
+
+
+    private void exitGame() {
+        viewObject.sayGoodbye();
+        System.exit(0);
+    }
+
+
+    private boolean guessIsCorrect() {
+        String wordString = arrayToString(wordArr);
+        String userGuessString = arrayToString(userGuessArr).replaceAll("\\s", "");
+
+        return wordString.equals(userGuessString);
+    }
+
+
+    private String arrayToString(String[] arr) {
         StringBuilder str = new StringBuilder();
 
         for (String element : arr) {
@@ -152,4 +203,22 @@ public void finishGame() {
         }
         return str.toString();
     }
+
+
+    private void giveAHint() {
+        if (hintsUsed < 3) {
+            for (String letter : wordArr) {
+
+                if (!usedLetters.contains(letter)) {
+                    viewObject.giveHint(letter);
+                    hintsUsed++;
+                    break;
+                }
+            }
+
+        } else {
+            viewObject.informHintsUsed();
+        }
+    }
+
 }

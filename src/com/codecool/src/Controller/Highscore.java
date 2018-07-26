@@ -5,62 +5,103 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.Arrays;
+import java.io.BufferedWriter;
+
 
 public class Highscore {
 
-    public  void writeToFile(String player, int score) {
+
+
+    public void writeToFile(String[] topPlayerArr) {
+        File file = new File("highscore.txt");
 
         try {
-            File file = new File("test.txt");
-
-            if (file.createNewFile()){
-                System.out.println("File is created!");
-            }else{
-                System.out.println("File already exists.");
-            }
-
-            FileWriter fw = new FileWriter(file, true);
-            fw.write(player + "," + score + ",");
-            fw.close();
+            FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fw);
+            for (String entry : topPlayerArr) {
+                bw.write(entry + ",");
+                }
+            bw.close();
 
         } catch (IOException ex) {
-            System.out.println("błąd zapisu");
+            System.out.println("saving file has encountered a problem");
         }
     }
-    public void readFile(int gameScore) {
 
-        File file = new File("test.txt");
+
+
+    public String[] readFile() {
+
+        File file = new File("highscore.txt");
         StringBuilder reading = new StringBuilder();
 
         try {
             Scanner scan = new Scanner(file);
-            while(scan.hasNextLine()) {
-                reading.append(scan.nextLine() + "\n");
-            }
+            reading.append(scan.nextLine());
 
         } catch (FileNotFoundException e) {
-            System.out.println("brak pliku");
+            System.out.println("no file");
         }
-        //System.out.println(reading.toString());
 
-        String[] listOfTopPlayer = reading.toString().split(",");
+            String[] topPlayerArr = reading.toString().split(",");
 
-        //System.out.println(listOfTopPlayer[1]);
+            return topPlayerArr;
+    }
 
 
-        for(int i = 0; i < listOfTopPlayer.length; i++ ){
-            if(i%2 != 0){
-                System.out.println(listOfTopPlayer[i]);
-                if(Integer.parseInt(listOfTopPlayer[i]) < gameScore){
-                    //zapisz najwyższy
-                }
-                else {
-                    //nic
-                }
+
+    public boolean checkIfHighScore(int score) {
+        String[] emptyArray = {"8void", "8void", "8void"};
+        String[] fileArray = readFile();
+        String[] topPlayerArr;
+
+        if (fileArray.length < 3) {
+            topPlayerArr = emptyArray;
+        }
+        else {
+            topPlayerArr = fileArray;
+        }
+
+        Arrays.sort(topPlayerArr);
+        for (String element : topPlayerArr) {
+            if (Character.getNumericValue(element.charAt(0)) >= score) {
+                return true;
+
             }
         }
+
+        return false;
+    }
+
+
+    public void saveHighscore(int score, String player) {
+        String[] emptyArray = {"8void", "8void", "8void"};
+        String[] fileArray = readFile();
+        String[] topPlayerArr;
+
+        if (fileArray.length < 3) {
+            topPlayerArr = emptyArray;
+        }
+        else {
+            topPlayerArr = fileArray;
+        }
+        Arrays.sort(topPlayerArr);
+        for (int i = 0; i < topPlayerArr.length; i++) {
+            if (Character.getNumericValue(topPlayerArr[i].charAt(0)) >= score) {
+                if (i == 1) {
+                    topPlayerArr[2] = topPlayerArr[1];
+                }
+                 topPlayerArr[i] = Integer.toString(score) + player;
+                 break;
+            }
+        }
+        writeToFile(topPlayerArr);
 
     }
 
 
+    public String[] getHighscore() {
+        return readFile();
+    }
 }
