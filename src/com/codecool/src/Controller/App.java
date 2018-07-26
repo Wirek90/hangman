@@ -19,6 +19,7 @@ public class App {
     private ArrayList<String> usedLetters;
     boolean playerWon;
     private HangMan hangManObject = new HangMan();
+    private Highscore highScoreObject = new Highscore();
 
 
     public void playHangmanPRO() {
@@ -60,14 +61,6 @@ public class App {
                 "",
                 Collections.nCopies(wordArr.length, "__ ,")
         ).split(",");
-        for (int counter = 0; counter < wordArr.length; counter++){
-            if (wordArr[counter].equals("-")){
-                userGuessArr[counter] = "-";
-
-            }
-        }
-
-
     }
 
 
@@ -133,6 +126,9 @@ public class App {
     public void finishGame() {
             if (playerWon) {
                 viewObject.informOfSuccess();
+                String userName = menuObject.getPlayerNameFromUser();
+                highScoreObject.writeToFile(userName, errors);
+                highScoreObject.readFile();
             } else if (!playerWon) {
                 viewObject.informOfFailure();
             }
