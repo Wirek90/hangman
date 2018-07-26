@@ -93,6 +93,22 @@ public class Menu {
 
     }
 
+    public String getPlayerNameFromUser() {
+        System.out.println("Please enter your username\n");
+        String choice = "";
+
+        while (!choice.equals("0")) {
+            choice = input.nextLine().toLowerCase();
+            if (choice.matches("^[a-zA-Z]*$") && choice.length() < 8) {
+                return choice;
+            } else {
+                System.out.println("Please enter only 8 letter. No numbers or Polish letters allowed!\n");
+            }
+        }
+
+        return choice;
+
+    }
 
 
 }
