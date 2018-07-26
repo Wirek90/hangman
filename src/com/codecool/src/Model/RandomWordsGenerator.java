@@ -19,6 +19,10 @@ String[] meme = {"harambe", "grumpy-cat", "doge", "chuck-norris", "angry-german-
         "nonono-cat", "epic-fail", "good-guy-greg", "u-mad-bro", "crying-jordan", "philosoraptor", "this-is-sparta",
         "flex-tape-guy"};
 
+String[] cars = {"ferrari", "seat", "bmw", "toyota", "mazda", "mercedes", "skoda", "fiat", "range-rover", "bentley",
+        "jeep", "lamborgini", "tata", "nissan", "audi", "volksvagen", "kia", "saab", "citroen", "peugeot", "alfa-romeo",
+        "ssangyong"};
+
         public String chooseDifficulty(String difficulty) {
 
                 switch (difficulty) {
@@ -30,6 +34,8 @@ String[] meme = {"harambe", "grumpy-cat", "doge", "chuck-norris", "angry-german-
                                 return getWord(wordsWith12Letters);
                         case "meme":
                                 return getWord(meme);
+                        case "cars":
+                                return getWord(cars);
                         default:
                                 return "";
                 }

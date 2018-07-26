@@ -45,14 +45,16 @@ public class Menu {
     // ask the user about the level of difficulty
         System.out.println("Choose the difficulty");
         System.out.println("1. easy, 2. medium, 3. hard");
-        System.out.println("or choose 4 to choose MEMES!");
+        System.out.print("Or choose 4 to choose MEMES!");
+        System.out.println(" If you like cars press 5.");
         String lvl = "";
 
         while (!lvl.equals("0")) {
         lvl = input.nextLine();
         System.out.println("Choose the difficulty\n");
         System.out.println("1. easy, 2. medium, 3. hard\n");
-        System.out.println("or choose 4 to choose MEMES!\n");
+        System.out.print("or choose 4 to choose MEMES!\n");
+            System.out.println(" If you like cars press 5.\n");
 
 
         switch (lvl) {
@@ -74,6 +76,10 @@ public class Menu {
             case ("4"):
                 lvl = "meme";
                 System.out.println("You so funny. I like funny");
+                return lvl;
+            case ("5"):
+                lvl = "cars";
+                System.out.println("Hmm car lover I see. Ok let's see...");
                 return lvl;
             default:
                 System.out.println("bad input");
