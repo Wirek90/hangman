@@ -19,8 +19,6 @@ public class Highscore {
 
     public  void writeToFile(String player, int score) {
 
-
-
         try {
             File file = new File("test.txt");
 
@@ -32,10 +30,7 @@ public class Highscore {
 
             FileWriter fw = new FileWriter(file, true);
 
-
-
             scoreMap.put(score, player);
-
 
             for(Map.Entry<Integer, String> entry : scoreMap.entrySet()) {
                 String key = Integer.toString(entry.getKey());
@@ -51,6 +46,8 @@ public class Highscore {
     }
     public void readFile() {
 
+        GameView view = new GameView();
+
         File file = new File("test.txt");
         StringBuilder reading = new StringBuilder();
 
@@ -64,25 +61,25 @@ public class Highscore {
             System.out.println("brak pliku");
         }
 
-        String[] topPlayerArr = reading.toString().split("");
 
-        GameView view = new GameView();
+        String[] topPlayerArr = reading.toString().split("\n");
 
         //view.printArrayAsString(topPlayerArr);
 
-        int score = Integer.parseInt(topPlayerArr[0]);
-        String player = "";
-        for(int i = 1; i < topPlayerArr.length; i++){
-            player += topPlayerArr[i];
-        }
+        Map<Integer, String> newMap = new TreeMap<>();
 
-        scoreMap.put(score, player);
+        for(int i = 0; i < topPlayerArr.length; i++){
+
+            int score = Integer.parseInt(topPlayerArr[i]);
+            String player = topPlayerArr[i].substring(1,topPlayerArr[i].length()-1);
+            newMap.put(score,player);
+        }
 
         for(Map.Entry<Integer, String> entry : scoreMap.entrySet()) {
             Integer key = entry.getKey();
             String value = entry.getValue();
             System.out.println(key);
-            System.out.print(value);
+            System.out.println(value);
         }
 
 
