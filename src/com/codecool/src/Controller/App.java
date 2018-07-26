@@ -59,6 +59,7 @@ public class App {
 
             if (!match) {
                 errors += 1;
+                HangMan.hangmanImage(wordArr.toString() ,errors);
                 //draw hangman(errors);
             }
 
@@ -109,17 +110,17 @@ public class App {
         //System.out.println(listOfTopPlayer[1]);
 
 
-        for(int i = 0; i < listOfTopPlayer.length; i++ ){
-            if(i%2 != 0){
-                System.out.println(listOfTopPlayer[i]);
-                if(listOfTopPlayer[i] < scoreGame){
-                    //zapisz najwyższy
-                }
-                else {
-                    //nic
-                }
-            }
-        }
+//        for(int i = 0; i < listOfTopPlayer.length; i++ ){
+//            if(i%2 != 0){
+//                System.out.println(listOfTopPlayer[i]);
+//                if(listOfTopPlayer[i] < scoreGame){
+//                    //zapisz najwyższy
+//                }
+//                else {
+//                    //nic
+//                }
+//            }
+//        }
 
     }
 
