@@ -15,7 +15,6 @@ public class ConsoleColors {
         public static final String WHITE = "\033[0;37m";   // WHITE
 
 
-
         // Bold
         public static final String BLACK_BOLD = "\033[1;30m";  // BLACK
         public static final String RED_BOLD = "\033[1;31m";    // RED

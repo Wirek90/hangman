@@ -22,6 +22,7 @@ public class Menu {
     }
 
     public String askToPlay() {
+        System.out.println("Welcome to HangmanPRO. \nThe rules are simple - you have to guess a word letter by letter.\nIf you make more than 7 mistakes - you're out. If you guess correctly - you win.\nTry to beat the highscore!\n");
         System.out.println("Would you like to start a new game? Y/N");
         String choice = "";
         System.out.println();
@@ -41,8 +42,6 @@ public class Menu {
 
 
     public String chooseDifficulty() {
-    // ask the user about the level of difficulty
-
 
         System.out.println("Choose the difficulty");
         System.out.println("1. easy, 2. medium, 3. hard");
@@ -50,7 +49,7 @@ public class Menu {
 
         while (!lvl.equals("0")) {
         lvl = input.nextLine();
-        System.out.println("Choose the difficulty\n");
+        System.out.println("Choose difficulty\n");
         System.out.println("1. easy, 2. medium, 3. hard\n");
 
         switch (lvl) {
@@ -103,7 +102,7 @@ public class Menu {
 
             while (!choice.equals("0")) {
                 choice = input.nextLine().toLowerCase();
-                if (choice.matches("^[a-zA-Z]*$") && choice.length() == 1) {
+                if (choice.matches("^[a-zA-Z || 0-1]*$") && choice.length() == 1) {
                     return choice;
                 } else {
                     System.out.println("Please enter only one letter. No numbers or Polish letters allowed!\n");

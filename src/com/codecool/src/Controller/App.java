@@ -11,13 +11,13 @@ public class App {
     private Menu menuObject = new Menu();
     private GameView viewObject = new GameView();
     private int errors = 0;
+    private int hintsUsed = 0;
     private int maxErrors = 7; // arbitralnie
     private String[] userGuessArr;
     private String[] wordArr;
     private String userInput = "";
-    private ArrayList <String> usedLetters;
+    private ArrayList<String> usedLetters;
     boolean playerWon;
-    int gameScore;
     private HangMan hangManObject = new HangMan();
 
 
@@ -30,6 +30,8 @@ public class App {
             restartGame();
     }
 
+
+
     public void playAgain() {
 
         errors = 0;
@@ -39,10 +41,12 @@ public class App {
         restartGame();
     }
 
+
+
     public void startGame() {
         menuObject.welcome();
         userInput = menuObject.askToPlay();
-        userInput = (userInput.equals("N"))? "0" : "";
+        userInput = (userInput.equals("N")) ? "0" : "";
     }
 
 
@@ -55,7 +59,7 @@ public class App {
         userGuessArr = String.join(
                 "",
                 Collections.nCopies(wordArr.length, "__ ,")
-                ).split(",");
+        ).split(",");
     }
 
 
@@ -67,7 +71,11 @@ public class App {
             viewObject.printArrayAsString(userGuessArr);
             boolean match = false;
             userInput = menuObject.getLetterFromUser();
-            if (usedLetters.contains(userInput)) {
+            if (userInput.equals("1")) {
+                giveAHint();
+            }
+
+            else if (usedLetters.contains(userInput)) {
                 viewObject.informLetterUsed();
 
             } else {
@@ -106,7 +114,12 @@ public class App {
             }
 
         }
+        if (userInput.equals("0")) {
+            exitGame();
+        }
+
     }
+
 
 
     public void finishGame() {
@@ -117,6 +130,8 @@ public class App {
             }
          }
 
+
+
     public void restartGame() {
 
         userInput = menuObject.playAgain();
@@ -126,21 +141,24 @@ public class App {
                 System.out.println(errors);
                 playAgain();
             } else if (userInput.equals("0")) {
-                System.exit(0);
+                exitGame();
             }
 
     }
 
 
 
+    public void exitGame() {
+        System.exit(0);
+    }
+
 
     public boolean guessIsCorrect() {
-            String wordString = arrayToString(wordArr);
-            String userGuessString = arrayToString(userGuessArr).replaceAll("\\s","");
+        String wordString = arrayToString(wordArr);
+        String userGuessString = arrayToString(userGuessArr).replaceAll("\\s", "");
 
-            return wordString.equals(userGuessString);
-        }
-
+        return wordString.equals(userGuessString);
+    }
 
 
     public String arrayToString(String[] arr) {
@@ -151,4 +169,22 @@ public class App {
         }
         return str.toString();
     }
+
+
+    public void giveAHint() {
+        if (hintsUsed < 3) {
+            for (String letter : wordArr) {
+
+                if (!usedLetters.contains(letter)) {
+                    viewObject.giveHint(letter);
+                    hintsUsed++;
+                    break;
+                }
+            }
+
+        } else {
+            viewObject.informHintsUsed();
+        }
+    }
+
 }
