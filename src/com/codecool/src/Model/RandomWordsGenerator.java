@@ -15,7 +15,9 @@ String[] wordsWith12Letters = {"constituency", "reproduction", "interference", "
         "accumulation", "satisfaction", "manufacturer", "intelligence", "contribution", "disagreement", "presentation",
         "registration"};
 
-String[] meme = {"harambe", "grumpy-cat", "doge", };
+String[] meme = {"harambe", "grumpy-cat", "doge", "chuck-norris", "angry-german-kid", "achmed-the-dead-terrorist",
+        "nonono-cat", "epic-fail", "good-guy-greg", "u-mad-bro", "crying-jordan", "philosoraptor", "this-is-sparta",
+        "flex-tape-guy"};
 
         public String chooseDifficulty(String difficulty) {
 
