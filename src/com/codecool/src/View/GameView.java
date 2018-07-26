@@ -14,11 +14,11 @@ public class GameView {
         }
 
     public void informOfFailure() {
-        System.out.println(ConsoleColors.RED_BOLD + "\nSO MANY MISTAKES...\nYOU LOST! SHAME ON YOU...\n" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.RED_BOLD + "SO MANY MISTAKES...\nYOU LOST! SHAME ON YOU...\n" + ConsoleColors.RESET);
      }
 
     public void informOfSuccess() {
-        System.out.println(ConsoleColors.GREEN_BOLD + "\nYOU WON! YAY!\n" + ConsoleColors.RESET);
+        System.out.println(ConsoleColors.GREEN_BOLD + "YOU WON! YAY!\n" + ConsoleColors.RESET);
     }
 
     public void correctMatch() {

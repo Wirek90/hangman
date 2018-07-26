@@ -23,9 +23,9 @@ String[] cars = {"ferrari", "seat", "bmw", "toyota", "mazda", "mercedes", "skoda
         "jeep", "lamborgini", "tata", "nissan", "audi", "volksvagen", "kia", "saab", "citroen", "peugeot", "alfa-romeo",
         "ssangyong"};
 
-        public String chooseDifficulty(String difficulty) {
+        public String chooseRandomWord(String type) {
 
-                switch (difficulty) {
+                switch (type) {
                         case "easy":
                                 return getWord(wordsWith6Letters);
                         case "medium":
