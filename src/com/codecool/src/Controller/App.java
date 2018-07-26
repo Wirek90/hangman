@@ -22,13 +22,10 @@ public class App {
 
     public void playHangmanPRO() {
 
-        while (!userInput.equals("0")) {
             startGame();
             prepareGame();
             playGame();
             finishGame();
-        }
-        System.exit(0);
     }
 
 
