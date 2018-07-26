@@ -47,7 +47,9 @@ public class App {
     public void startGame() {
         menuObject.welcome();
         userInput = menuObject.askToPlay();
-        userInput = (userInput.equals("N")) ? "0" : "";
+        if (userInput.equals("N")) {
+            exitGame();
+        }
     }
 
 
@@ -55,15 +57,31 @@ public class App {
     public void prepareGame() {
         RandomWordsGenerator randomWord = new RandomWordsGenerator();
         userInput = menuObject.chooseDifficulty();
+
+        if (userInput.equals("0")) {
+            exitGame();
+        }
         wordArr = randomWord.chooseDifficulty(userInput).split("");
         usedLetters = new ArrayList<String>();
-        userGuessArr = String.join(
-                "",
-                Collections.nCopies(wordArr.length, "__ ,")
-        ).split(",");
+        prepareGuessArr();
+
+
     }
 
 
+
+    public void prepareGuessArr() {
+        userGuessArr = String.join(
+                "",
+                Collections.nCopies(wordArr.length, "__ ,"))
+                .split(",");
+
+        for (int i = 0; i < wordArr.length; i++) {
+            if (wordArr[i].equals("-")) {
+                userGuessArr[i] = "-";
+            }
+        }
+    }
 
     public void playGame() {
         String userInput = "";
@@ -72,10 +90,14 @@ public class App {
             viewObject.printArrayAsString(userGuessArr);
             boolean match = false;
             userInput = menuObject.getLetterFromUser();
+
+            if (userInput.equals("0")) {
+                exitGame();
+            }
+
             if (userInput.equals("1")) {
                 giveAHint();
             }
-
             else if (usedLetters.contains(userInput)) {
                 viewObject.informLetterUsed();
 
@@ -153,6 +175,7 @@ public class App {
 
 
     public void exitGame() {
+        viewObject.sayGoodbye();
         System.exit(0);
     }
 

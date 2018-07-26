@@ -41,6 +41,12 @@ public class GameView {
         System.out.println(ConsoleColors.GREEN_BOLD + "\nWhy don't you give \"" + letter.toUpperCase() + "\" a try.\n" +  ConsoleColors.RESET);
     }
 
+
+    public void sayGoodbye() {
+        System.out.println(ConsoleColors.GREEN_BOLD + "\nGoodbye... You will be missed!\n" +  ConsoleColors.RESET);
+    }
+
+
     }
 
 
