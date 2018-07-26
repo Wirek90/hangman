@@ -18,6 +18,7 @@ public class App {
     private ArrayList <String> usedLetters;
     boolean playerWon;
     int gameScore;
+    private HangMan hangManObject = new HangMan();
 
 
     public void playHangmanPRO() {
@@ -82,7 +83,8 @@ public class App {
                 } else if (!match) {
                     errors += 1;
                     viewObject.incorrectMatch();
-                    //draw hangman(errors);
+                    hangManObject.hangmanImage(wordArr, errors);
+
                 }
 
                 if (guessIsCorrect()) {
