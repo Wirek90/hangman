@@ -1,5 +1,4 @@
 package com.codecool.src.View;
-import java.io.Console;
 import java.util.Scanner;
 
 
@@ -42,11 +41,7 @@ public class Menu {
 
 
     public String chooseDifficulty() {
-
-        System.out.println("Choose the difficulty");
-        System.out.println("1. easy, 2. medium, 3. hard");
         String lvl = "";
-
         while (!lvl.equals("0")) {
         lvl = input.nextLine();
         System.out.println("Choose difficulty\n");
