@@ -37,6 +37,9 @@ public class App {
         if (userInput.equals("N")) {
             exitGame();
         }
+        if (userInput.equals("H")) {
+            viewObject.printHighScore(highScoreObject.getHighscore());
+        }
     }
 
 

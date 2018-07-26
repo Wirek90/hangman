@@ -25,10 +25,10 @@ public class Menu {
     public String askToPlay() {
         String choice = "";
         System.out.println("Welcome to HangmanPRO. \nThe rules are simple - you have to guess a word letter by letter.\nIf you make more than 7 mistakes - you're out. If you guess correctly - you win.\nTry to beat the highscore!\n");
-        System.out.println("Would you like to start a new game? Y/N");
+        System.out.println("Would you like to start a new game? Y/N\nIf you want to see high scores, select \"H\"");
             while (!choice.equals("0")) {
                 choice = input.nextLine().toUpperCase();
-                if (choice.equals("Y") || choice.equals("N") || choice.equals("0")){
+                if (choice.equals("Y") || choice.equals("N") || choice.equals("0") || choice.equals("H")){
                     return choice;
                 } else {
                     System.out.println("Please enter only Y to play or N to quit");
