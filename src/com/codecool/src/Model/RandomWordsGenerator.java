@@ -15,6 +15,8 @@ String[] wordsWith12Letters = {"constituency", "reproduction", "interference", "
         "accumulation", "satisfaction", "manufacturer", "intelligence", "contribution", "disagreement", "presentation",
         "registration"};
 
+String[] meme = {"harambe", "grumpy-cat", "doge", };
+
         public String chooseDifficulty(String difficulty) {
 
                 switch (difficulty) {
@@ -24,6 +26,8 @@ String[] wordsWith12Letters = {"constituency", "reproduction", "interference", "
                                 return getWord(wordsWith10Letters);
                         case "hard":
                                 return getWord(wordsWith12Letters);
+                        case "meme":
+                                return getWord(meme);
                         default:
                                 return "";
                 }

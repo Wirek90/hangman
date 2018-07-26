@@ -55,7 +55,16 @@ public class App {
         userGuessArr = String.join(
                 "",
                 Collections.nCopies(wordArr.length, "__ ,")
-                ).split(",");
+        ).split(",");
+        for (int counter = 0; counter < wordArr.length; counter++){
+            if (wordArr[counter].equals("-")){
+                System.out.println("dfgk,rg,prleg,lprg,porg,rtg,op");
+                userGuessArr[counter] = "-";
+
+            }
+        }
+
+
     }
 
 
