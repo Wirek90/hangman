@@ -1,8 +1,12 @@
 package com.codecool.src.Model;
 
+import com.codecool.src.View.GameView;
+
 public class HangMan {
 
-    public static void hangmanImage(String word, int count) {
+    GameView view = new GameView();
+
+    public void hangmanImage(String[] word, int count) {
         if (count == 1) {
             System.out.println("Wrong guess, try again");
             System.out.println();
@@ -68,9 +72,10 @@ public class HangMan {
             System.out.println("   |          O");
             System.out.println("   |         /|\\");
             System.out.println("   |          |");
-            System.out.println("   |         /|\\");
+            System.out.println("   |         / \\");
             System.out.println("___|___");
-            System.out.println("GAME OVER! The word was " + word);
+            System.out.println("GAME OVER! The word was ");
+            view.printArrayAsString(word);
         }
     }
 }

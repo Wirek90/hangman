@@ -8,5 +8,6 @@ class Main {
         App game = new App();
         game.startGame();
         game.playGame();
+        game.playHangmanPRO();
     }
 }

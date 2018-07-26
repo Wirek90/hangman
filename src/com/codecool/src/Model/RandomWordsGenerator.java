@@ -3,8 +3,8 @@ package com.codecool.src.Model;
 public class RandomWordsGenerator {
 
 
-String[] wordsWith6Letters = {"avenue", "killer", "harass", "member", "unlike", "mosque", "choose", "retain", "shiver",
-        "bomber", "bitter", "strong", "ribbon", "mother", "deadly", "resign", "deport", "reject", "create", "banana"};
+String[] wordsWith6Letters = {"avenue", "killer", "random", "member", "unlike", "fickle", "choose", "retain", "shiver",
+        "bomber", "bitter", "strong", "ribbon", "pants", "deadly", "resign", "deport", "reject", "create", "banana"};
 
 String[] wordsWith10Letters = {"repetition", "occupation", "gregarious", "revolution", "engagement", "multimedia",
         "atmosphere", "correspond", "confidence", "experiment", "dependence", "appearance", "obligation", "hypothesis",
