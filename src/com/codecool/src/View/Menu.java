@@ -43,11 +43,7 @@ public class Menu {
 
     public String chooseDifficulty() {
     // ask the user about the level of difficulty
-        System.out.println("Choose the difficulty");
-        System.out.println("1. easy, 2. medium, 3. hard");
-        System.out.print("Or choose 4 to choose MEMES!");
-        System.out.println(" If you like cars press 5.");
-        String lvl = "";
+         String lvl = "";
 
         while (!lvl.equals("0")) {
         lvl = input.nextLine();
