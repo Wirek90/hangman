@@ -1,14 +1,25 @@
 package com.codecool.src.Controller;
 
+import com.codecool.src.View.GameView;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.Collection;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.TreeMap;
 
 public class Highscore {
 
+    Map<Integer, String> scoreMap = new TreeMap<>();
+
     public  void writeToFile(String player, int score) {
+
+
 
         try {
             File file = new File("test.txt");
@@ -20,14 +31,25 @@ public class Highscore {
             }
 
             FileWriter fw = new FileWriter(file, true);
-            fw.write(player + "," + score + ",");
+
+
+
+            scoreMap.put(score, player);
+
+
+            for(Map.Entry<Integer, String> entry : scoreMap.entrySet()) {
+                String key = Integer.toString(entry.getKey());
+                String value = entry.getValue();
+                fw.write(key + value + "\n");
+            }
+
             fw.close();
 
         } catch (IOException ex) {
             System.out.println("błąd zapisu");
         }
     }
-    public void readFile(int gameScore) {
+    public void readFile() {
 
         File file = new File("test.txt");
         StringBuilder reading = new StringBuilder();
@@ -41,24 +63,29 @@ public class Highscore {
         } catch (FileNotFoundException e) {
             System.out.println("brak pliku");
         }
-        //System.out.println(reading.toString());
 
-        String[] listOfTopPlayer = reading.toString().split(",");
+        String[] topPlayerArr = reading.toString().split("");
 
-        //System.out.println(listOfTopPlayer[1]);
+        GameView view = new GameView();
 
+        //view.printArrayAsString(topPlayerArr);
 
-        for(int i = 0; i < listOfTopPlayer.length; i++ ){
-            if(i%2 != 0){
-                System.out.println(listOfTopPlayer[i]);
-                if(Integer.parseInt(listOfTopPlayer[i]) < gameScore){
-                    //zapisz najwyższy
-                }
-                else {
-                    //nic
-                }
-            }
+        int score = Integer.parseInt(topPlayerArr[0]);
+        String player = "";
+        for(int i = 1; i < topPlayerArr.length; i++){
+            player += topPlayerArr[i];
         }
+
+        scoreMap.put(score, player);
+
+        for(Map.Entry<Integer, String> entry : scoreMap.entrySet()) {
+            Integer key = entry.getKey();
+            String value = entry.getValue();
+            System.out.println(key);
+            System.out.print(value);
+        }
+
+
 
     }
 
