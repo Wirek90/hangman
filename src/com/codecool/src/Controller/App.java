@@ -77,7 +77,7 @@ public class App {
 
             if (!match) {
                 errors += 1;
-                HangMan.hangmanImage(wordArr.toString() ,errors);
+                hangManObject.hangmanImage(wordArr ,errors);
                 //draw hangman(errors);
             }
 
