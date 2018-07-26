@@ -135,10 +135,13 @@ public class App {
     private void finishGame() {
             if (playerWon) {
                 viewObject.informOfSuccess();
-                if (highScoreObject.checkIfHighscore(errors)) {
+                if (highScoreObject.checkIfHighScore(errors)) {
                     String userName = menuObject.getPlayerNameFromUser();
-                   // highScoreObject.writeToFile();
-                    //highScoreObject.readFile();
+                    highScoreObject.saveHighscore(errors, userName);
+                    String[] highScore = highScoreObject.readFile();
+                    viewObject.printHighScore(highScore);
+
+
                 }
             } else if (!playerWon) {
                 viewObject.informOfFailure();
@@ -167,7 +170,7 @@ public class App {
     private void resetStats() {
         errors = 0;
         hintsUsed = 0;
-        maxErrors = 7; // arbitralnie
+        maxErrors = 7;
         userInput = "";
         usedLetters.clear();
         playerWon = false;

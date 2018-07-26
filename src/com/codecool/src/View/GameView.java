@@ -21,24 +21,51 @@ public class GameView {
         System.out.println(ConsoleColors.GREEN_BOLD + "YOU WON! YAY!\n" + ConsoleColors.RESET);
     }
 
+
+
     public void correctMatch() {
         System.out.println(ConsoleColors.GREEN_BOLD + "\nIt's a match!\n");
     }
+
+
 
     public void incorrectMatch() {
         System.out.println(ConsoleColors.RED_BOLD + "\nOops... Better luck next time!\n" + ConsoleColors.RESET);
     }
 
+
+
     public void informLetterUsed() {
             System.out.println(ConsoleColors.RED_BOLD + "\nYou've already used this one. Try again!\n" + ConsoleColors.RESET);
         }
+
+
 
     public void informHintsUsed() {
         System.out.println(ConsoleColors.RED_BOLD + "\nYou've already used all available hints. You're on your own now...\n" + ConsoleColors.RESET);
     }
 
+
+
     public void giveHint(String letter) {
         System.out.println(ConsoleColors.GREEN_BOLD + "\nWhy don't you give \"" + letter.toUpperCase() + "\" a try.\n" +  ConsoleColors.RESET);
+    }
+
+
+
+    public void printHighScore(String[] highScore) {
+        System.out.println(ConsoleColors.YELLOW_BOLD + "\nHIGHSCORES: \n" + ConsoleColors.RESET);
+
+        System.out.println(ConsoleColors.YELLOW_BOLD + "________________________\n" + ConsoleColors.RESET);
+        for (int i = 0; i < highScore.length; i++) {
+            System.out.println(ConsoleColors.RED_BOLD +
+                    highScore[i].charAt(0) +
+                    "        " +
+                    highScore[i].substring(1, highScore[i].length()-1) +
+                    ConsoleColors.RESET);
+        }
+        System.out.println(ConsoleColors.YELLOW_BOLD + "________________________" + ConsoleColors.RESET);
+
     }
 
 
