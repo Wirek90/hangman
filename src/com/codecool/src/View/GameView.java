@@ -8,7 +8,7 @@ public class GameView {
         for (String element : array) {
             prettyArr.append(element);
         }
-        System.out.println(ConsoleColors.YELLOW_BOLD + "\n Your guess: \n");
+        System.out.println(ConsoleColors.YELLOW_BOLD);
         System.out.println(prettyArr.toString().toUpperCase());
         System.out.println("\n" + ConsoleColors.RESET);
         }
@@ -38,7 +38,7 @@ public class GameView {
     }
 
     public void giveHint(String letter) {
-        System.out.println(ConsoleColors.GREEN_BOLD + "\nWhy don't you give " + letter.toUpperCase() + " a try.\n" +  ConsoleColors.RESET);
+        System.out.println(ConsoleColors.GREEN_BOLD + "\nWhy don't you give \"" + letter.toUpperCase() + "\" a try.\n" +  ConsoleColors.RESET);
     }
 
     }

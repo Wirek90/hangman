@@ -42,30 +42,47 @@ public class Menu {
 
 
     public String chooseDifficulty() {
+    // ask the user about the level of difficulty
+        System.out.println("Choose the difficulty");
+        System.out.println("1. easy, 2. medium, 3. hard");
+        System.out.print("Or choose 4 to choose MEMES!");
+        System.out.println(" If you like cars press 5.");
         String lvl = "";
-        while (!lvl.equals("0")) {
 
-            System.out.println("Choose difficulty\n");
-            System.out.println("1. easy, 2. medium, 3. hard\n");
-            lvl = input.nextLine();
-            switch (lvl) {
-                case ("0"):
-                      System.out.printf("Goodbye\n");
-                    return lvl;
-                case ("1"):
-                    lvl = "easy";
-                    System.out.printf("You choose %s. You're weak!", lvl);
-                    return lvl;
-                case ("2"):
-                    lvl = "medium";
-                    System.out.printf("You choose %s. Not bad", lvl);
-                    return lvl;
-                case ("3"):
-                    lvl = "hard";
-                    System.out.printf("You choose %s. You like Dark Souls?", lvl);
-                    return lvl;
-                default:
-                    System.out.println("bad input");
+        while (!lvl.equals("0")) {
+        lvl = input.nextLine();
+        System.out.println("Choose the difficulty\n");
+        System.out.println("1. easy, 2. medium, 3. hard\n");
+        System.out.print("or choose 4 to choose MEMES!\n");
+            System.out.println(" If you like cars press 5.\n");
+
+
+        switch (lvl) {
+            case ("0"):
+                  System.out.printf("Goodbye\n");
+                return lvl;
+            case ("1"):
+                lvl = "easy";
+                System.out.printf("You choose %s. You're weak!", lvl);
+                return lvl;
+            case ("2"):
+                lvl = "medium";
+                System.out.printf("You choose %s. Not bad", lvl);
+                return lvl;
+            case ("3"):
+                lvl = "hard";
+                System.out.printf("You choose %s. You like Dark Souls?", lvl);
+                return lvl;
+            case ("4"):
+                lvl = "meme";
+                System.out.println("You so funny. I like funny");
+                return lvl;
+            case ("5"):
+                lvl = "cars";
+                System.out.println("Hmm car lover I see. Ok let's see...");
+                return lvl;
+            default:
+                System.out.println("bad input");
 
             }
             }
@@ -85,7 +102,7 @@ public class Menu {
             if (choicePlayAgain.equals("1")){
                 return choicePlayAgain;
             } else if (choicePlayAgain.equals("0")) {
-                System.out.println("Please enter only Y to play or N to quit");
+                System.out.println("Please enter only 1 to play or 0 to quit");
             } else {
                 System.out.printf("Bad input you moron. Go commit sudoku!");
             }
@@ -97,7 +114,7 @@ public class Menu {
 
 
     public String getLetterFromUser() {
-        System.out.println("Guess a letter\n");
+        System.out.println("Guess a letter (or press 1 to get a hint) \n");
         String choice = "";
 
             while (!choice.equals("0")) {
