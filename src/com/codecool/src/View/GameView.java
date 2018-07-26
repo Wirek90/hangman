@@ -61,7 +61,7 @@ public class GameView {
             System.out.println(ConsoleColors.RED_BOLD +
                     highScore[i].charAt(0) +
                     "        " +
-                    highScore[i].substring(1, highScore[i].length()-1) +
+                    highScore[i].substring(1, highScore[i].length()) +
                     ConsoleColors.RESET);
         }
         System.out.println(ConsoleColors.YELLOW_BOLD + "________________________" + ConsoleColors.RESET);

@@ -32,7 +32,7 @@ public class Menu {
                     return choice;
                 } else {
                     System.out.println("Please enter only Y to play or N to quit");
-                    input.nextLine();
+                   // input.nextLine();
                 }
             }
 
@@ -44,13 +44,13 @@ public class Menu {
     public String chooseDifficulty() {
     // ask the user about the level of difficulty
          String lvl = "";
-
-        while (!lvl.equals("0")) {
-        lvl = input.nextLine();
         System.out.println("Choose the difficulty\n");
         System.out.println("1. easy, 2. medium, 3. hard\n");
         System.out.print("or choose 4 to choose MEMES!\n");
-            System.out.println(" If you like cars press 5.\n");
+        System.out.println(" If you like cars press 5.\n");
+        while (!lvl.equals("0")) {
+        lvl = input.nextLine();
+
 
 
         switch (lvl) {
@@ -95,11 +95,9 @@ public class Menu {
 
         while (!choicePlayAgain.equals("0")) {
             choicePlayAgain = input.nextLine();
-            if (choicePlayAgain.equals("1")){
+            if (choicePlayAgain.equals("1") || choicePlayAgain.equals("0")){
                 return choicePlayAgain;
-            } else if (choicePlayAgain.equals("0")) {
-                System.out.println("Please enter only 1 to play or 0 to quit");
-            } else {
+            }  else {
                 System.out.printf("Bad input you moron. Go commit sudoku!");
             }
         }
