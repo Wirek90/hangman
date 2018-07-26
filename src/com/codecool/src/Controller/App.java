@@ -23,8 +23,6 @@ public class App {
 
 
     public void playHangmanPRO() {
-
-            startGame();
             prepareGame();
             playGame();
             finishGame();
@@ -34,17 +32,12 @@ public class App {
 
 
     public void playAgain() {
-
-        errors = 0;
-        prepareGame();
-        playGame();
-        finishGame();
-        restartGame();
+        playHangmanPRO();
     }
 
 
 
-    public void startGame() {
+    public void welcome() {
         menuObject.welcome();
         userInput = menuObject.askToPlay();
         if (userInput.equals("N")) {
@@ -164,8 +157,14 @@ public class App {
 
 
             if (userInput.equals("1")){
-                System.out.println(errors);
+                errors = 0;
+                hintsUsed = 0;
+                maxErrors = 7; // arbitralnie
+                userInput = "";
+                usedLetters.clear();
+                playerWon = false;
                 playAgain();
+
             } else if (userInput.equals("0")) {
                 exitGame();
             }
